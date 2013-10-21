@@ -1,13 +1,15 @@
 puush-linux
 ===========
 
-A Bash script for uploading files to puush.me from Linux. Many thanks to @Westie for his insights on puush's undocumented API :)
+Modified by s0beit [puromonogatari on github]!
+
+A Bash script for uploading files to puush.me from Linux. Opens a new chromium tab when upload is complete automatically!
+
 
 Using
 -----
 
-* Get puush from here: http://b3.blha303.com.au/puush-linux/files/puush
-* Copy 'puush' to /usr/bin.
-* Use it with `puush file.name`. 
-
-You'll need to set up an environment variable, PUUSH_API_KEY. You can do this per-session with `export PUUSH_API_KEY="apiKeyHere"`, or by putting that command in `~/.bashrc`.
+* Put puu.sh in your /usr/local/sbin/ folder, or your /usr/bin/ folder, or whatever you like, I suppose.
+* This version requires chromium browser for now, but you can modify it to open firefox tabs if you like (might be fixed later to detect browsers)
+* edit the file and replace the email, api key and endpoint with your own (you can use puush, or your own server!)
+* execute `puu.sh "filename here"`
