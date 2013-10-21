@@ -1,15 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+EMAIL=<YOUR EMAIL>
+APIKEY=<YOUR API KEY>
+ENDPOINT=<YOUR ENDPOINT>
 
-PUUSH_API_KEY=""
-
-if [ -z "$PUUSH_API_KEY" ]
-then
-  echo "Set the variable PUUSH_API_KEY in $0 or with 'export PUUSH_API_KEY=\"apiKeyHere\""
-  exit
-elif ! [ -r "$1" ]
-then
-  echo "Specify a file to be uploaded"
-  exit
+if [ $# -eq 1 ]; then
+        hash=$(eval "md5sum \"$1\" | cut -d' ' -f1")
+        sendline="curl \"$ENDPOINT/api/up/\" -s -F \"z=poop\" -F \"e=$EMAIL\" -F \"k=$APIKEY\" -F \"f=@$1\" -F \"c=$hash\""
+        open=$(eval "$sendline | sed -E 's/^.+,(.+),.+,.+$/\1\n/'")
+        eval "chromium-browser \"$open\" >/dev/null"
+else
+        echo "Usage: puu.sh <file>"
 fi
-
-curl "https://puush.me/api/up" -# -F "k=$PUUSH_API_KEY" -F "z=poop" -F "f=@$1" | sed -E 's/^.+,(.+),.+,.+$/\1\n/'
